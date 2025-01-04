@@ -4,7 +4,7 @@ const { allowedDomains } = require("./constant");
 const corsOptions = {
   origin: function (origin, callback) {
     try {
-      if (allowedDomains.includes(origin) || true) {
+      if (allowedDomains.includes(origin)) {
         callback(null, true);
       } else {
         let msg =
@@ -20,6 +20,8 @@ const corsOptions = {
     }
   },
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+  allowedHeaders: ["Content-Type"],
+  credentials: true,
 };
 
 module.exports = cors(corsOptions);

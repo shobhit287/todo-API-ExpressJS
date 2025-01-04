@@ -11,7 +11,7 @@ async function login(req, res) {
     const user = await validateUser(email, password);
     const token = await generateJwtToken(user);
     res.cookie('token', token, {
-        httpOnly: true,
+        // httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
         sameSite: 'Strict',
         maxAge: parseCookieExpiration(process.env.JWT_EXPIRATION_TIME),

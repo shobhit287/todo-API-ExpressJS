@@ -12,19 +12,15 @@ const validateDto = (dto, target = 'body') => {
         const errors = await validate(dtoInstance);
 
         if (errors.length > 0) {
-            const formattedErrors = errors.map(err => {
-                const constErrors = [];
+            const constErrors = [];
+            errors.forEach(err => {
                 if (err.constraints) {
                     for (const e in err.constraints) {
                         constErrors.push(err.constraints[e]);
                     }
                 }
-                return {
-                    property: err.property,
-                    error: constErrors,
-                };
             });
-            return res.status(400).json({ errors: formattedErrors });
+            return res.status(400).json({errors: constErrors});
         }
 
         const dtoFields = Object.keys(new dto());
