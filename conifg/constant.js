@@ -1,1 +1,1 @@
-exports.allowedDomains = [process.env.CLIENT_URL, process.env.SERVER_URL, "https://todo-react-portal-pbyfwdiag-shobhit287s-projects.vercel.app"];
+exports.allowedDomains = [process.env.CLIENT_URL, process.env.SERVER_URL];
