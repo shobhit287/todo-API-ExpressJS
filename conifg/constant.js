@@ -1,1 +1,1 @@
-exports.allowedDomains = [process.env.CLIENT_URL, "http://localhost:8001"];
+exports.allowedDomains = [process.env.CLIENT_URL, process.env.SERVER_URL];
