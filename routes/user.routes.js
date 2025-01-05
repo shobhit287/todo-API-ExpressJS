@@ -11,7 +11,7 @@ router.post("/user", validateDto(CreateUserDto), create);
 router.get("/user", authMiddleware, getAll);
 router.get("/user/:id", authMiddleware, getById);
 router.put("/user/:id", authMiddleware, validateDto(UpdateUserDto), update);
-router.patch("/user/:id", authMiddleware, validateDto(ChangePasswordDto), changePassword);
+router.patch("/user/:id/change-password", authMiddleware, validateDto(ChangePasswordDto), changePassword);
 router.delete("/user/:id", authMiddleware, deleteUser);
 
 module.exports = router;

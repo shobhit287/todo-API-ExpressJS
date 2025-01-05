@@ -140,7 +140,7 @@
 // USER PASSWORD CHANGE 
 /**
  * @swagger
- * /user/{id}:
+ * /user/{id}/change-password:
  *   patch:
  *     summary: Change User Password By Id
  *     description: Change a user password by id.

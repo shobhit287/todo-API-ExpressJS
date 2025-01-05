@@ -33,7 +33,7 @@ const validateUser = async (email, password) => {
   if (user && (await bcrypt.compare(password, user.password))) {
     return user;
   }
-  throw new CustomErrorHandler(401, { error: "Invalid Credentials" });
+  throw new CustomErrorHandler(401, { message: "Invalid Credentials" });
 };
 
 const generateJwtToken = async (user) => {
