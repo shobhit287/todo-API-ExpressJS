@@ -41,6 +41,7 @@ app.use((err, req, res, next) => {
 });
 
 //rate limiter
+app.set('trust proxy', true);
 const limiter = rateLimit({
     windowMs: 5 * 60 * 1000,
     max: 100,
