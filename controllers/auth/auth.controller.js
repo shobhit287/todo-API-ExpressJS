@@ -28,6 +28,25 @@ async function login(req, res) {
   }
 }
 
+async function  logout(req, res) {
+  try {
+    res.clearCookie("token", {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'None',
+    });
+    return res.status(200).json({message: "Logout successfully"})
+  } catch(error) {
+    if (error instanceof CustomErrorHandler) {
+      return res.status(error.statusCode).json(error.message);
+    } else {
+      return res
+        .status(500)
+        .json({ message: "Internal Server Error", error: error.message });
+    }
+  }
+}
+
 const validateUser = async (email, password) => {
   const user = await userService.findOne({ email });
   if (user && (await bcrypt.compare(password, user.password))) {
@@ -67,4 +86,5 @@ const parseCookieExpiration = (expiration) => {
 
 module.exports = {
   login,
+  logout
 };

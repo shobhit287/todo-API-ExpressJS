@@ -11,13 +11,21 @@ const verifyToken = async (req, res, next) => {
         const decoded = jwt.verify(token, JWT_SECRET_KEY);
         const user = await User.findById(decoded.userId);
         if (!user) {
-            res.clearCookie('token');
+            res.clearCookie("token", {
+                httpOnly: true,
+                secure: process.env.NODE_ENV === 'production',
+                sameSite: 'None',
+            });
             return res.status(404).json({ message: 'User not found.' });
         }
         req.user = decoded;
         next();
     } catch (err) {
-        res.clearCookie('token');
+        res.clearCookie("token", {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'None',
+        });
         if (err.name === 'TokenExpiredError') {
             return res.status(401).json({ message: 'Token has expired. Please log in again.' });
         } else {

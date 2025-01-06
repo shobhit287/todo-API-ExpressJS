@@ -34,3 +34,23 @@
  *       500:
  *         description: Internal server error
  */
+
+// Logout user
+/**
+ * @swagger
+ * /logout:
+ *   post:
+ *     summary: Logout User
+ *     description: Logout user.
+ *     tags:
+ *       - Auth
+ *     content:
+ *         application/json:
+ *     responses:
+ *       200:
+ *         description: Logout Successfully
+ *       401:
+ *         description: Unauthorized
+ *       500:
+ *         description: Internal server error
+ */
