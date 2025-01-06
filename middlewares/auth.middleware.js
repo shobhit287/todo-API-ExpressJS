@@ -14,7 +14,7 @@ const verifyToken = async (req, res, next) => {
             res.clearCookie("token", {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === 'production',
-                sameSite: 'None',
+                sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Strict',
             });
             return res.status(404).json({ message: 'User not found.' });
         }
@@ -24,7 +24,7 @@ const verifyToken = async (req, res, next) => {
         res.clearCookie("token", {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
-            sameSite: 'None',
+            sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Strict',
         });
         if (err.name === 'TokenExpiredError') {
             return res.status(401).json({ message: 'Token has expired. Please log in again.' });
