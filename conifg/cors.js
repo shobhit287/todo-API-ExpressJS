@@ -8,16 +8,16 @@ const corsOptions = {
       if (allowedDomains.includes(origin)) {
         callback(null, true);
       } else {
-        let msg = `The CORS policy for this site does not allow access from the specified Origin(${origin}).`;
+        const msg = `The CORS policy for this site does not allow access from the specified Origin(${origin}).`;
         callback(new Error(msg), false);
       }
     } catch (error) {
-      let msg = `The CORS policy for this site does not allow access from the specified Origin`;
+      const msg = `The CORS policy for this site does not allow access from the specified Origin`;
       callback(new Error(msg), false);
     }
   },
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
-  allowedHeaders: ["Content-Type", "Authorization"],
+  allowedHeaders: ["Content-Type"],
   credentials: true,
 };
 
