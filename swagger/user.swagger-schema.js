@@ -66,6 +66,30 @@
  *         description: Internal server error
  */
 
+
+// Decode user token
+/**
+ * @swagger
+ * /user/decode-token:
+ *   get:
+ *     summary: Decode User Token
+ *     description: Decode user token.
+ *     tags:
+ *       - User
+ *     content:
+ *         application/json:
+ *     responses:
+ *       200:
+ *         description: User details
+ *       401:
+ *         description: Unauthorized
+ *       404:
+ *         description: User not found
+ *       500:
+ *         description: Internal server error
+ */
+
+
 // GET USER BY ID
 /**
  * @swagger
