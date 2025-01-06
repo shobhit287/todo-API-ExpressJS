@@ -13,7 +13,7 @@ async function login(req, res) {
     res.cookie('token', token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
-        sameSite: 'Strict',
+        sameSite: 'None',
         maxAge: parseCookieExpiration(process.env.JWT_EXPIRATION_TIME),
       });
     return res.status(200).json({ message: 'Login successful' });

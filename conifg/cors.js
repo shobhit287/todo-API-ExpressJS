@@ -4,20 +4,14 @@ const { allowedDomains } = require("./constant");
 const corsOptions = {
   origin: function (origin, callback) {
     try {
-      console.log("ORIGIN:", origin, allowedDomains)
-      let message;
-      if(origin == undefined) {
-        message = "No origin header sent"
-        callback(new Error(message), false);
-      }
       if (allowedDomains.includes(origin)) {
         callback(null, true);
       } else {
-        message = `The CORS policy for this site does not allow access from the specified Origin(${origin}).`;
+        const message = `The CORS policy for this site does not allow access from the specified Origin(${origin}).`;
         callback(new Error(message), false);
       }
     } catch (error) {
-       const msg = `The CORS policy for this site does not allow access from the specified Origin`;
+      const msg = `The CORS policy for this site does not allow access from the specified Origin`;
       callback(new Error(msg), false);
     }
   },
