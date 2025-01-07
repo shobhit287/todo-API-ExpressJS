@@ -28,5 +28,15 @@ const userSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
+
+userSchema.pre("deleteOne", { document: true, query: false }, async function (next) {
+  try {
+    const userId = this._id;
+    await mongoose.model("Todo").deleteMany({ userId });
+    next();
+  } catch (error) {
+    next(error);
+  }
+});
 const User = mongoose.model("User", userSchema);
 module.exports = User;
